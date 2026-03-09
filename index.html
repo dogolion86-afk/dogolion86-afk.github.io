@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare Italia - Guida agli Animali Domestici</title>
+    <style>
+        /* STILI IDENTICI AL PRECEDENTE - INVARIATI */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .category-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .category-btn:hover {
+            background: #764ba2;
+        }
+
+        .articles {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-content h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .article-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .read-more:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* STILI SEZIONE CANI */
+        .dogs-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .dogs-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 40px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .dogs-hero h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .dogs-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .dog-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .dogs-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .dog-tab-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #666;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dog-tab-btn.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .dog-tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .dog-tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .breed-filters {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .breed-filters select, .breed-filters input {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .breeds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .breed-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .breed-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .breed-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .breed-size-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .size-small { background: #4caf50; color: white; }
+        .size-medium { background: #ff9800; color: white; }
+        .size-large { background: #f44336; color: white; }
+
+        .breed-info {
+            padding: 20px;
+        }
+
+        .breed-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .breed-temperament {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .temperament-badge {
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .breed-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .feeding-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feeding-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .feeding-card h4 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .feeding-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feeding-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .food-warning {
+            background: #fff3f3;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border-left: 5px solid #f44336;
+        }
+
+        .warning-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .badge {
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+
+        .bg-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .health-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .health-card h4 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .health-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .health-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .training-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .fun-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .fact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fact-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .fact-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .age-calculator {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calculator-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #f5576c;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .calculator-form input, .calculator-form select {
+            padding: 12px;
+            width: 100%;
+            max-width: 300px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .calculate-btn {
+            padding: 12px 40px;
+            background: white;
+            color: #f5576c;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .calculate-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .vet-finder {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .vet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .vet-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .vet-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .vet-rating {
+            color: #ffc107;
+            margin: 10px 0;
+        }
+
+        .contact-vet {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .gallery {
+            background: #f5f7fa;
+            padding: 60px 20px;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .upload-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .upload-btn {
+            padding: 15px 40px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .forum {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .new-topic-btn {
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .forum-topics {
+            display: grid;
+            gap: 20px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .topic-info h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .topic-meta {
+            display: flex;
+            gap: 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .topic-stats {
+            display: flex;
+            gap: 30px;
+            color: #666;
+        }
+
+        .comment-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .comment {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        .comment-text {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .comment-form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .comment-form button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #667eea;
+        }
+
+        .modal h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            padding-right: 30px;
+        }
+
+        .modal-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .modal-body {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .modal-body h3 {
+            color: #667eea;
+            margin: 25px 0 15px;
+            font-size: 1.3rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .dogs-hero {
+                padding: 40px 20px;
+            }
+
+            .dogs-hero h3 {
+                font-size: 2rem;
+            }
+
+            .breed-filters {
+                flex-direction: column;
+            }
+
+            .dogs-tabs {
+                flex-direction: column;
+            }
+
+            .dog-tab-btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .modal h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span>🐾</span>
+                <span>PetCare Italia</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#cani">Cani</a>
+                <a href="#gatti">Gatti</a>
+                <a href="#altri">Altri Animali</a>
+                <a href="#calcolatore">Calcolatore Età</a>
+                <a href="#forum">Forum</a>
+                <a href="#contatti">Contatti</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>🐕 Tutto per i tuoi Amici a 4 Zampe 🐈</h1>
+                <p>Scopri consigli, guide e informazioni per prenderti cura al meglio dei tuoi animali domestici</p>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="section-title">
+                <h2>I Nostri Amici</h2>
+                <p>Scopri tutto quello che c'è da sapere sulle diverse specie</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card" onclick="location.href='#cani'">
+                    <div class="category-icon">🐕</div>
+                    <h3>Cani</h3>
+                    <p>Guida completa alle razze, addestramento, alimentazione e salute</p>
+                    <button class="category-btn" onclick="location.href='#cani'">Scopri di più</button>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🐈</div>
+                    <h3>Gatti</h3>
+                    <p>Tutto sui felini: comportamento, cure, e consigli per convivere al meglio</p>
+                    <button class="category-btn" onclick="alert('Sezione Gatti in arrivo!')">Scopri di più</button>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🐠</div>
+                    <h3>Pesci</h3>
+                    <p>Acquari, manutenzione, specie e alimentazione per pesci d'acquario</p>
+                    <button class="category-btn" onclick="alert('Sezione Pesci in arrivo!')">Scopri di più</button>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🐹</div>
+                    <h3>Piccoli Animali</h3>
+                    <p>Conigli, criceti, cavie e altri piccoli amici domestici</p>
+                    <button class="category-btn" onclick="alert('Sezione Piccoli Animali in arrivo!')">Scopri di più</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="articles" id="articoli">
+            <div class="section-title">
+                <h2>Articoli Recenti</h2>
+                <p>Le ultime novità e consigli per i tuoi animali</p>
+            </div>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400')">
+                        <span class="article-category">Cani</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>I 5 Segnali per capire se il tuo Cane si fida di te</h3>
+                        <p>Capire il linguaggio del corpo del tuo cane è fondamentale per un legame forte. Ecco come capire se sei il suo umano preferito.</p>
+                        <div class="article-meta">
+                            <span>📅 18 Marzo 2024</span>
+                            <button class="read-more" onclick="openArticleModal()">Leggi tutto →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=400')">
+                        <span class="article-category">Gatti</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>Capire il linguaggio del gatto</h3>
+                        <p>Scopri come interpretare i segnali che il tuo felino ti manda ogni giorno...</p>
+                        <div class="article-meta">
+                            <span>📅 10 Marzo 2024</span>
+                            <button class="read-more" onclick="alert('Articolo in preparazione!')">Leggi tutto →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400')">
+                        <span class="article-category">Salute</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>Vaccinazioni: calendario e importanza</h3>
+                        <p>Tutto quello che devi sapere sulle vaccinazioni per i tuoi animali domestici...</p>
+                        <div class="article-meta">
+                            <span>📅 5 Marzo 2024</span>
+                            <button class="read-more" onclick="alert('Articolo in preparazione!')">Leggi tutto →</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEZIONE CANI CON 30 RAZZE E FOTO CORRETTE -->
+        <section class="dogs-section" id="cani">
+            <div class="section-title">
+                <h2>🐕 Tutto sui Cani</h2>
+                <p>La guida completa per il tuo migliore amico a quattro zampe</p>
+            </div>
+
+            <div class="dogs-hero">
+                <div class="dogs-hero-content">
+                    <h3>Il Cane: il migliore amico dell'uomo</h3>
+                    <p>Scopri razze, carattere, alimentazione, salute e curiosità sul mondo canino</p>
+                </div>
+            </div>
+
+            <div class="dog-stats">
+                <div class="stat-card">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Razze riconosciute</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15.000</div>
+                    <div class="stat-label">Anni di addomesticamento</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1°</div>
+                    <div class="stat-label">Animale domestico in Italia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Delle famiglie con animali</div>
+                </div>
+            </div>
+
+            <div class="dogs-tabs">
+                <button class="dog-tab-btn active" onclick="showDogTab('razze', this)">🐕 Razze</button>
+                <button class="dog-tab-btn" onclick="showDogTab('alimentazione', this)">🥩 Alimentazione</button>
+                <button class="dog-tab-btn" onclick="showDogTab('salute', this)">🏥 Salute</button>
+                <button class="dog-tab-btn" onclick="showDogTab('addestramento', this)">🎓 Addestramento</button>
+                <button class="dog-tab-btn" onclick="showDogTab('curiosita', this)">✨ Curiosità</button>
+            </div>
+
+            <div id="dog-razze" class="dog-tab-content active">
+                <h3>🔍 Esplora le Razze canine</h3>
+                <div class="breed-filters">
+                    <select id="breedSize" onchange="filterBreeds()">
+                        <option value="all">Tutte le taglie</option>
+                        <option value="small">Taglia Piccola (fino a 10kg)</option>
+                        <option value="medium">Taglia Media (10-25kg)</option>
+                        <option value="large">Taglia Grande (oltre 25kg)</option>
+                    </select>
+                    <select id="breedTemperament" onchange="filterBreeds()">
+                        <option value="all">Tutti i caratteri</option>
+                        <option value="family">Adatto alle famiglie</option>
+                        <option value="guardia">Cane da guardia</option>
+                        <option value="sportivo">Sportivo/Attivo</option>
+                        <option value="calmo">Calmo/Tranquillo</option>
+                    </select>
+                    <input type="text" id="breedSearch" placeholder="Cerca una razza..." onkeyup="filterBreeds()">
+                </div>
+                
+                <div class="breeds-grid" id="breedsGrid">
+                    <!-- Le 30 razze verranno caricate qui da JavaScript -->
+                </div>
+            </div>
+
+            <div id="dog-alimentazione" class="dog-tab-content">
+                <h3>🥩 Guida all'Alimentazione del Cane</h3>
+                <div class="feeding-guide">
+                    <div class="feeding-card">
+                        <h4>🐕 Cuccioli (0-12 mesi)</h4>
+                        <ul>
+                            <li>3-4 pasti al giorno</li>
+                            <li>Cibo specifico per cuccioli</li>
+                            <li>Ricco di proteine e calcio</li>
+                            <li>Evita cibi troppo grassi</li>
+                        </ul>
+                    </div>
+                    <div class="feeding-card">
+                        <h4>🦴 Adulti (1-7 anni)</h4>
+                        <ul>
+                            <li>2 pasti al giorno</li>
+                            <li>Bilanciato in nutrienti</li>
+                            <li>Porzioni in base all'attività</li>
+                            <li>Integratori se necessario</li>
+                        </ul>
+                    </div>
+                    <div class="feeding-card">
+                        <h4>👴 Anziani (8+ anni)</h4>
+                        <ul>
+                            <li>2 pasti leggeri</li>
+                            <li>Cibo per anziani</li>
+                            <li>Integratori per articolazioni</li>
+                            <li>Facilmente digeribile</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="food-warning">
+                    <h4>⚠️ Cibi da evitare assolutamente:</h4>
+                    <div class="warning-grid">
+                        <span class="badge bg-danger">Cioccolato</span>
+                        <span class="badge bg-danger">Uva e uvetta</span>
+                        <span class="badge bg-danger">Cipolle e aglio</span>
+                        <span class="badge bg-danger">Avocado</span>
+                        <span class="badge bg-danger">Noci di macadamia</span>
+                        <span class="badge bg-danger">Xilitolo (dolcificante)</span>
+                        <span class="badge bg-danger">Uova crude</span>
+                        <span class="badge bg-danger">Lievito</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dog-salute" class="dog-tab-content">
+                <h3>🏥 Salute e Benessere</h3>
+                <div class="health-grid">
+                    <div class="health-card">
+                        <h4>📅 Vaccinazioni obbligatorie</h4>
+                        <ul>
+                            <li><strong>45 giorni:</strong> Prima vaccinazione</li>
+                            <li><strong>60 giorni:</strong> Richiamo</li>
+                            <li><strong>6 mesi:</strong> Rabbia</li>
+                            <li><strong>Ogni anno:</strong> Richiamo annuale</li>
+                        </ul>
+                    </div>
+                    <div class="health-card">
+                        <h4>🪱 Parassiti e vermifughi</h4>
+                        <ul>
+                            <li>Vermifugo: ogni 3 mesi</li>
+                            <li>Antipulci: ogni mese (primavera/estate)</li>
+                            <li>Antizecche: ogni mese</li>
+                            <li>Controllo filaria</li>
+                        </ul>
+                    </div>
+                    <div class="health-card">
+                        <h4>⚠️ Segnali di malessere</h4>
+                        <ul>
+                            <li>Inappetenza prolungata</li>
+                            <li>Vomito o diarrea</li>
+                            <li>Letargia e apatia</li>
+                            <li>Tosse o starnuti frequenti</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dog-addestramento" class="dog-tab-content">
+                <h3>🎓 Guida all'Addestramento</h3>
+                <div class="training-tips">
+                    <div class="tip-card">
+                        <h4>🎯 Comandi di base</h4>
+                        <p>Inizia con comandi semplici come "seduto", "terra" e "resta". Usa rinforzi positivi (premietti e coccole).</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>🏃 Socializzazione</h4>
+                        <p>Esponi il cane a diverse situazioni, persone e altri cani fin da cucciolo per un carattere equilibrato.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>🚽 Educazione domestica</h4>
+                        <p>Portalo fuori dopo i pasti e i riposini. Premialo quando fa i bisogni nel posto giusto.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>🦴 Morsi e giochi</h4>
+                        <p>Fornisci giochi adatti e non usare le mani per giocare. Insegna il "lascia" per oggetti pericolosi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dog-curiosita" class="dog-tab-content">
+                <h3>✨ Curiosità sui Cani</h3>
+                <div class="fun-facts">
+                    <div class="fact-card">
+                        <span class="fact-icon">👃</span>
+                        <h4>Super odorato</h4>
+                        <p>Il naso del cane è 10.000-100.000 volte più sensibile del nostro. Hanno 300 milioni di recettori olfattivi (noi solo 6 milioni).</p>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">💧</span>
+                        <h4>Sudore... dalle zampe!</h4>
+                        <p>I cani sudano solo attraverso i cuscinetti delle zampe. Per rinfrescarsi ansimano.</p>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">👁️</span>
+                        <h4>Visione notturna</h4>
+                        <p>Vedono meglio di noi al buio grazie al "tapetum lucidum" (lo strato riflettente dietro la retina).</p>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">❤️</span>
+                        <h4>Batticuore</h4>
+                        <p>Guardare il tuo cane negli occhi aumenta l'ossitocina (l'ormone dell'amore) sia in te che in lui!</p>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">🎾</span>
+                        <h4>Sogni ad occhi aperti</h4>
+                        <p>I cani sognano esattamente come noi. I cuccioli e gli anziani sognano di più.</p>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">🌡️</span>
+                        <h4>Temperatura</h4>
+                        <p>La temperatura corporea normale del cane è tra 38°C e 39°C (più alta degli umani).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="age-calculator" id="calcolatore">
+            <div class="calculator-container">
+                <h2 style="text-align: center; margin-bottom: 30px;">🐾 Calcolatore Età Animale 🐾</h2>
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" onclick="switchAnimal('cane', this)">Cane</button>
+                    <button class="tab-btn" onclick="switchAnimal('gatto', this)">Gatto</button>
+                </div>
+                <div class="calculator-form">
+                    <input type="number" id="petAge" placeholder="Età del tuo animale (anni)" min="0" max="30">
+                    <select id="petSize">
+                        <option value="small">Taglia Piccola (fino a 10kg)</option>
+                        <option value="medium">Taglia Media (10-25kg)</option>
+                        <option value="large">Taglia Grande (oltre 25kg)</option>
+                    </select>
+                    <button class="calculate-btn" onclick="calculateAge()">Calcola Età Umana</button>
+                    <div class="result" id="ageResult"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vet-finder" id="vetFinder">
+            <div class="section-title">
+                <h2>🏥 Trova un Veterinario</h2>
+                <p>Cerca i migliori veterinari nella tua zona</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="citySearch" placeholder="Inserisci la tua città (es. Roma, Milano, Napoli...)">
+                <button onclick="searchVets()">Cerca</button>
+            </div>
+            <div class="vet-grid" id="vetGrid"></div>
+        </section>
+
+        <section class="gallery" id="gallery">
+            <div class="section-title">
+                <h2>📸 Galleria Animali</h2>
+                <p>Condividi le foto dei tuoi amici pelosi</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="upload-section">
+                <button class="upload-btn" onclick="document.getElementById('photoUpload').click()">
+                    📤 Carica una foto
+                </button>
+                <input type="file" id="photoUpload" accept="image/*" style="display: none;" onchange="uploadPhoto(event)">
+            </div>
+        </section>
+
+        <section class="forum" id="forum">
+            <div class="forum-header">
+                <h2>💬 Forum della Community</h2>
+                <button class="new-topic-btn" onclick="showNewTopicModal()">+ Nuova Discussione</button>
+            </div>
+            <div class="forum-topics" id="forumTopics"></div>
+            
+            <div class="comment-section" id="commentSection" style="display: none;">
+                <h3 id="currentTopicTitle"></h3>
+                <div id="comments"></div>
+                <div class="comment-form">
+                    <input type="text" id="commentInput" placeholder="Scrivi un commento...">
+                    <button onclick="addComment()">Invia</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="articleModal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeArticleModal()">&times;</span>
+                <h2>I 5 Segnali per capire se il tuo Cane si fida di te</h2>
+                <span class="modal-date">📅 18 Marzo 2024 | Categoria: Cani</span>
+                <div class="modal-body">
+                    <p>Capire il linguaggio del corpo del tuo cane è fondamentale per costruire e mantenere un legame forte e duraturo. Ecco i 5 segnali che ti dicono che sei il suo umano preferito:</p>
+                    
+                    <h3>🐕 1. Ti mostra la pancia</h3>
+                    <p>È la massima espressione di vulnerabilità e fiducia. Quando il tuo cane si rotola sulla schiena mostrandoti la pancia, ti sta dicendo: "Mi fido completamente di te, so che non mi farai del male".</p>
+                    
+                    <h3>🛏️ 2. Ti cerca per un pisolino</h3>
+                    <p>Se dorme vicino a te, ti considera il suo "posto sicuro". I cani sono più vulnerabili quando dormono, quindi scegliere di farlo accanto a te significa che si sente protetto.</p>
+                    
+                    <h3>👁️ 3. Mantiene il contatto visivo</h3>
+                    <p>Non è una sfida, ma un segno di profondo legame affettivo. Quando il tuo cane ti guarda negli occhi con dolcezza, il suo cervello rilascia ossitocina.</p>
+                    
+                    <h3>🎾 4. Ti porta i suoi giochi preferiti</h3>
+                    <p>Non vuole solo giocare, ti sta offrendo il suo "tesoro". I cani considerano i loro giochi come beni preziosi. Portarteli significa condividere con te ciò che ha di più caro.</p>
+                    
+                    <h3>😴 5. Sbadiglia quando sbadigli tu</h3>
+                    <p>È un segno di empatia profonda. Proprio come tra umani, anche i cani "prendono" lo sbadiglio delle persone a cui sono legati.</p>
+                    
+                    <p style="margin-top: 30px; font-style: italic; color: #667eea;">Osserva il tuo amico a quattro zampe: quanti di questi segnali riconosci?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="topicModal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('topicModal')">&times;</span>
+                <h2>Crea Nuova Discussione</h2>
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                    <input type="text" id="newTopicTitle" placeholder="Titolo della discussione" style="padding: 10px;">
+                    <select id="newTopicCategory" style="padding: 10px;">
+                        <option value="cani">Cani</option>
+                        <option value="gatti">Gatti</option>
+                        <option value="salute">Salute</option>
+                        <option value="alimentazione">Alimentazione</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                    <textarea id="newTopicContent" placeholder="Scrivi il tuo messaggio..." rows="5" style="padding: 10px;"></textarea>
+                    <button onclick="createNewTopic()" style="padding: 12px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Pubblica</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🐾 PetCare Italia</h3>
+                <p>Il portale informativo dedicato ai tuoi animali domestici. Consigli, guide e informazioni dai migliori esperti.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">📱</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Link Utili</h3>
+                <p><a href="#">Chi Siamo</a></p>
+                <p><a href="#">Contatti</a></p>
+                <p><a href="#">Privacy Policy</a></p>
+                <p><a href="#">Cookie Policy</a></p>
+                <p><a href="#">Collabora con noi</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contatti</h3>
+                <p>📧 info@petcareitalia.it</p>
+                <p>📞 800 123 456</p>
+                <p>📍 Via degli Animali, 123 - Roma</p>
+                <p>🕒 Lun-Ven: 9:00-18:00</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 PetCare Italia - Tutti i diritti riservati</p>
+            <p style="font-size: 0.8rem; margin-top: 10px;">Made with ❤️ per i nostri amici animali</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== VARIABILI GLOBALI ====================
+        let currentAnimal = 'cane';
+        let topics = [
+            { id: 1, title: "Alimentazione migliore per cuccioli", category: "cani", author: "Marco", date: "2024-03-15", replies: 5, comments: [] },
+            { id: 2, title: "Il mio gatto non mangia più", category: "gatti", author: "Laura", date: "2024-03-14", replies: 3, comments: [] },
+            { id: 3, title: "Vaccinazioni: quando farle?", category: "salute", author: "Giulia", date: "2024-03-13", replies: 7, comments: [] }
+        ];
+        let currentTopicId = null;
+
+        const veterinari = [
+            { nome: "Clinica Veterinaria Roma Centro", città: "Roma", indirizzo: "Via del Corso 123", tel: "06 12345678", rating: 4.5, specialità: "Cani e Gatti" },
+            { nome: "Ambulatorio Veterinario Milano", città: "Milano", indirizzo: "Via Torino 45", tel: "02 87654321", rating: 4.8, specialità: "Tutti gli animali" },
+            { nome: "Veterinario Napoli", città: "Napoli", indirizzo: "Via Toledo 67", tel: "081 1234567", rating: 4.3, specialità: "Cani e piccoli animali" },
+            { nome: "Centro Veterinario Torino", città: "Torino", indirizzo: "Corso Francia 89", tel: "011 2345678", rating: 4.6, specialità: "Specialisti in felini" },
+            { nome: "Clinica Veterinaria Firenze", città: "Firenze", indirizzo: "Viale dei Colli 12", tel: "055 9876543", rating: 4.7, specialità: "Esotici e domestici" },
+            { nome: "Ambulatorio Veterinario Bologna", città: "Bologna", indirizzo: "Via Indipendenza 34", tel: "051 3456789", rating: 4.4, specialità: "Cani e gatti" }
+        ];
+
+        let galleryImages = [
+            { url: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400", caption: "Cane felice" },
+            { url: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=400", caption: "Gatto curioso" },
+            { url: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400", caption: "Cane che corre" },
+            { url: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400", caption: "Gatto che dorme" }
+        ];
+
+        // ==================== 30 RAZZE CANI CON FOTO CORRETTE ====================
+        const dogBreeds = [
+            {
+                name: "Labrador Retriever",
+                size: "large",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "25-36 kg",
+                description: "Affettuoso, intelligente e pieno di energia. Perfetto per famiglie attive."
+            },
+            {
+                name: "Golden Retriever",
+                size: "large",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1633722715463-30d4b5f3b022?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "25-34 kg",
+                description: "Paziente, dolce e affidabile. Uno dei migliori cani per famiglie con bambini."
+            },
+            {
+                name: "Pastore Tedesco",
+                size: "large",
+                temperament: ["guardia", "sportivo"],
+                image: "https://images.unsplash.com/photo-1568572933382-74d440642117?w=400",
+                lifeSpan: "9-13 anni",
+                weight: "30-40 kg",
+                description: "Coraggioso, leale e versatile. Eccellente cane da lavoro e guardia."
+            },
+            {
+                name: "Bulldog Francese",
+                size: "small",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "8-14 kg",
+                description: "Giocherellone, affettuoso e di piccola taglia. Perfetto per appartamento."
+            },
+            {
+                name: "Border Collie",
+                size: "medium",
+                temperament: ["sportivo"],
+                image: "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "14-20 kg",
+                description: "Intelligentissimo, energetico e desideroso di imparare. Ideale per sport cinofili."
+            },
+            {
+                name: "Carlino",
+                size: "small",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "6-8 kg",
+                description: "Affettuoso, divertente e dal carattere dolce. Perfetto compagno per tutti."
+            },
+            {
+                name: "Rottweiler",
+                size: "large",
+                temperament: ["guardia"],
+                image: "https://images.unsplash.com/photo-1567752881298-894bb81f9379?w=400",
+                lifeSpan: "8-10 anni",
+                weight: "35-60 kg",
+                description: "Forte, sicuro di sé e protettivo. Ha bisogno di una guida esperta."
+            },
+            {
+                name: "Beagle",
+                size: "medium",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1505628346881-72b856e97430?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "9-11 kg",
+                description: "Curioso, allegro e socievole. Ottimo con i bambini e altri cani."
+            },
+            {
+                name: "Husky Siberiano",
+                size: "medium",
+                temperament: ["sportivo"],
+                image: "https://images.unsplash.com/photo-1617895153857-82c79b6eba9b?w=400",
+                lifeSpan: "12-14 anni",
+                weight: "16-27 kg",
+                description: "Energetico, indipendente e socievole. Ha bisogno di molto esercizio."
+            },
+            {
+                name: "Chihuahua",
+                size: "small",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                lifeSpan: "14-16 anni",
+                weight: "1-3 kg",
+                description: "Piccolo ma coraggioso, molto affettuoso con il suo padrone."
+            },
+            {
+                name: "Dobermann",
+                size: "large",
+                temperament: ["guardia", "sportivo"],
+                image: "https://images.unsplash.com/photo-1575852661809-2f68d76f6a24?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "30-40 kg",
+                description: "Elegante, intelligente e protettivo. Ottimo cane da difesa."
+            },
+            {
+                name: "Shih Tzu",
+                size: "small",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1583336523026-5b0a841c0e4e?w=400",
+                lifeSpan: "10-16 anni",
+                weight: "4-7 kg",
+                description: "Affettuoso, vivace e ama stare in compagnia. Perfetto per appartamento."
+            },
+            {
+                name: "Alano",
+                size: "large",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400",
+                lifeSpan: "7-10 anni",
+                weight: "50-90 kg",
+                description: "Gigante buono, paziente e affettuoso. Nonostante la taglia è molto docile."
+            },
+            {
+                name: "Bassotto",
+                size: "small",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1611715721797-39290c5d8a33?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "7-15 kg",
+                description: "Coraggioso, curioso e testardo. Ottimo cacciatore nonostante le zampe corte."
+            },
+            {
+                name: "Jack Russell",
+                size: "small",
+                temperament: ["sportivo"],
+                image: "https://images.unsplash.com/photo-1598887105028-9c1f3bae2814?w=400",
+                lifeSpan: "13-16 anni",
+                weight: "5-7 kg",
+                description: "Energetico, intelligente e vivace. Ha bisogno di molto esercizio."
+            },
+            {
+                name: "Maltese",
+                size: "small",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1591949558172-25a045d8b9db?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "3-4 kg",
+                description: "Dolce, affettuoso e dal pelo lungo e setoso. Perfetto compagno."
+            },
+            {
+                name: "Pitbull",
+                size: "medium",
+                temperament: ["sportivo", "guardia"],
+                image: "https://images.unsplash.com/photo-1582456892045-54cafe4cae94?w=400",
+                lifeSpan: "12-14 anni",
+                weight: "14-27 kg",
+                description: "Forte, leale e affettuoso con la famiglia. Ha bisogno di socializzazione."
+            },
+            {
+                name: "Cocker Spaniel",
+                size: "medium",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "10-15 kg",
+                description: "Dolce, allegro e dal carattere equilibrato. Perfetto per famiglie."
+            },
+            {
+                name: "Shiba Inu",
+                size: "medium",
+                temperament: ["calmo"],
+                image: "https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "8-10 kg",
+                description: "Indipendente, pulito e dal carattere forte. Simile a un piccolo volpe."
+            },
+            {
+                name: "Akita Inu",
+                size: "large",
+                temperament: ["guardia", "calmo"],
+                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "32-45 kg",
+                description: "Fedele, coraggioso e riservato. Legame fortissimo con il padrone."
+            },
+            {
+                name: "Barboncino",
+                size: "small",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1583336523026-5b0a841c0e4e?w=400",
+                lifeSpan: "12-15 anni",
+                weight: "4-7 kg",
+                description: "Intelligente, vivace e ipoallergenico. Perfetto per chi ha allergie."
+            },
+            {
+                name: "Boxer",
+                size: "large",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "25-32 kg",
+                description: "Giocherellone, energetico e paziente con i bambini."
+            },
+            {
+                name: "Levriero",
+                size: "large",
+                temperament: ["calmo"],
+                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                lifeSpan: "10-14 anni",
+                weight: "25-40 kg",
+                description: "Veloce, elegante e dal carattere dolce. Ama correre e rilassarsi."
+            },
+            {
+                name: "San Bernardo",
+                size: "large",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1568572933382-74d440642117?w=400",
+                lifeSpan: "8-10 anni",
+                weight: "60-80 kg",
+                description: "Gigante buono, paziente e protettivo. Perfetto per famiglie con bambini."
+            },
+            {
+                name: "Volpino Italiano",
+                size: "small",
+                temperament: ["family", "calmo"],
+                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                lifeSpan: "14-16 anni",
+                weight: "4-5 kg",
+                description: "Vivace, affettuoso e dal pelo bianco e soffice. Ottimo compagnia."
+            },
+            {
+                name: "Maremmano",
+                size: "large",
+                temperament: ["guardia"],
+                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "30-45 kg",
+                description: "Cane da pastore, protettivo e indipendente. Ottimo guardiano."
+            },
+            {
+                name: "Bracco Italiano",
+                size: "large",
+                temperament: ["sportivo"],
+                image: "https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400",
+                lifeSpan: "10-12 anni",
+                weight: "25-40 kg",
+                description: "Eccellente cane da caccia, affettuoso e docile con la famiglia."
+            },
+            {
+                name: "Cane Corso",
+                size: "large",
+                temperament: ["guardia"],
+                image: "https://images.unsplash.com/photo-1568572933382-74d440642117?w=400",
+                lifeSpan: "9-12 anni",
+                weight: "40-50 kg",
+                description: "Potente, protettivo e fedele. Ha bisogno di una guida esperta."
+            },
+            {
+                name: "Papillon",
+                size: "small",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                lifeSpan: "13-15 anni",
+                weight: "3-5 kg",
+                description: "Intelligente, elegante e dalle grandi orecchie a farfalla."
+            },
+            {
+                name: "West Highland",
+                size: "small",
+                temperament: ["family", "sportivo"],
+                image: "https://images.unsplash.com/photo-1611715721797-39290c5d8a33?w=400",
+                lifeSpan: "12-16 anni",
+                weight: "6-8 kg",
+                description: "Coraggioso, vivace e dal pelo bianco. Perfetto per famiglie attive."
+            }
+        ];
+
+        // ==================== FUNZIONI MODALE ARTICOLO ====================
+        function openArticleModal() {
+            document.getElementById('articleModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticleModal() {
+            document.getElementById('articleModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ==================== FUNZIONI CALCOLATORE ETÀ ====================
+        function switchAnimal(animal, element) {
+            currentAnimal = animal;
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            const sizeSelect = document.getElementById('petSize');
+            if (animal === 'gatto') {
+                sizeSelect.style.display = 'none';
+            } else {
+                sizeSelect.style.display = 'block';
+            }
+        }
+
+        function calculateAge() {
+            const age = document.getElementById('petAge').value;
+            if (!age) {
+                alert('Inserisci l\'età del tuo animale');
+                return;
+            }
+
+            let humanAge;
+            if (currentAnimal === 'cane') {
+                const size = document.getElementById('petSize').value;
+                if (size === 'small') humanAge = age * 5;
+                else if (size === 'medium') humanAge = age * 6;
+                else humanAge = age * 7;
+            } else {
+                if (age <= 1) humanAge = 15;
+                else if (age <= 2) humanAge = 24;
+                else humanAge = 24 + (age - 2) * 4;
+            }
+
+            document.getElementById('ageResult').innerHTML = 
+                `🎂 Il tuo ${currentAnimal} ha circa <strong>${Math.round(humanAge)} anni umani</strong>!`;
+        }
+
+        // ==================== FUNZIONI VETERINARI ====================
+        function searchVets() {
+            const city = document.getElementById('citySearch').value.toLowerCase().trim();
+            const vetGrid = document.getElementById('vetGrid');
+            
+            let filtered = veterinari;
+            if (city) {
+                filtered = veterinari.filter(v => v.città.toLowerCase().includes(city));
+            }
+            
+            if (filtered.length === 0) {
+                vetGrid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666;">Nessun veterinario trovato in questa città</p>';
+                return;
+            }
+
+            vetGrid.innerHTML = filtered.map(vet => `
+                <div class="vet-card">
+                    <h3>${vet.nome}</h3>
+                    <p>📍 ${vet.indirizzo}</p>
+                    <p>📞 ${vet.tel}</p>
+                    <p>🏥 ${vet.specialità}</p>
+                    <div class="vet-rating">⭐ ${vet.rating}/5</div>
+                    <button class="contact-vet" onclick="contactVet('${vet.nome}')">Contatta</button>
+                </div>
+            `).join('');
+        }
+
+        function contactVet(nome) {
+            alert(`Richiesta di contatto inviata a ${nome}. Ti risponderanno al più presto!`);
+        }
+
+        // ==================== FUNZIONI GALLERIA ====================
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = galleryImages.map((img, index) => `
+                <div class="gallery-item" onclick="openGalleryImage(${index})">
+                    <img src="${img.url}" alt="${img.caption}">
+                    <div class="gallery-overlay">
+                        <p>${img.caption}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function uploadPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    galleryImages.push({
+                        url: e.target.result,
+                        caption: "Foto caricata dall'utente"
+                    });
+                    loadGallery();
+                    alert('Foto caricata con successo!');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function openGalleryImage(index) {
+            alert(`📸 ${galleryImages[index].caption}`);
+        }
+
+        // ==================== FUNZIONI FORUM ====================
+        function loadForum() {
+            const forumTopics = document.getElementById('forumTopics');
+            forumTopics.innerHTML = topics.map(topic => `
+                <div class="topic-card" onclick="showComments(${topic.id})">
+                    <div class="topic-info">
+                        <h3>${topic.title}</h3>
+                        <div class="topic-meta">
+                            <span>👤 ${topic.author}</span>
+                            <span>📅 ${topic.date}</span>
+                            <span>🏷️ ${topic.category}</span>
+                        </div>
+                    </div>
+                    <div class="topic-stats">
+                        <span>💬 ${topic.replies} risposte</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showComments(topicId) {
+            currentTopicId = topicId;
+            const topic = topics.find(t => t.id === topicId);
+            
+            document.getElementById('commentSection').style.display = 'block';
+            document.getElementById('currentTopicTitle').textContent = topic.title;
+            
+            const commentsDiv = document.getElementById('comments');
+            if (!topic.comments || topic.comments.length === 0) {
+                commentsDiv.innerHTML = '<p style="text-align: center; color: #999;">Nessun commento ancora. Scrivi il primo!</p>';
+            } else {
+                commentsDiv.innerHTML = topic.comments.map(comment => `
+                    <div class="comment">
+                        <span class="comment-author">${comment.author}</span>
+                        <span class="comment-date">${comment.date}</span>
+                        <div class="comment-text">${comment.text}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addComment() {
+            const commentInput = document.getElementById('commentInput');
+            const commentText = commentInput.value.trim();
+            
+            if (!commentText) {
+                alert('Scrivi un commento!');
+                return;
+            }
+            
+            if (!currentTopicId) {
+                alert('Seleziona prima una discussione');
+                return;
+            }
+            
+            const topic = topics.find(t => t.id === currentTopicId);
+            if (!topic.comments) topic.comments = [];
+            
+            topic.comments.push({
+                author: "Utente",
+                date: new Date().toLocaleDateString('it-IT'),
+                text: commentText
+            });
+            
+            topic.replies = (topic.replies || 0) + 1;
+            commentInput.value = '';
+            showComments(currentTopicId);
+            loadForum();
+        }
+
+        function showNewTopicModal() {
+            document.getElementById('topicModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function createNewTopic() {
+            const title = document.getElementById('newTopicTitle').value.trim();
+            const category = document.getElementById('newTopicCategory').value;
+            const content = document.getElementById('newTopicContent').value.trim();
+            
+            if (!title || !content) {
+                alert('Compila tutti i campi');
+                return;
+            }
+            
+            const newTopic = {
+                id: topics.length + 1,
+                title: title,
+                category: category,
+                author: "Utente",
+                date: new Date().toLocaleDateString('it-IT'),
+                replies: 1,
+                comments: [{
+                    author: "Utente",
+                    date: new Date().toLocaleDateString('it-IT'),
+                    text: content
+                }]
+            };
+            
+            topics.push(newTopic);
+            loadForum();
+            closeModal('topicModal');
+            
+            document.getElementById('newTopicTitle').value = '';
+            document.getElementById('newTopicContent').value = '';
+            
+            alert('Discussione creata con successo!');
+        }
+
+        // ==================== FUNZIONI SEZIONE CANI ====================
+        function showDogTab(tabName, element) {
+            document.querySelectorAll('.dog-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.dog-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(`dog-${tabName}`).classList.add('active');
+            element.classList.add('active');
+            
+            if (tabName === 'razze') {
+                loadBreeds();
+            }
+        }
+
+        function loadBreeds() {
+            const breedsGrid = document.getElementById('breedsGrid');
+            if (!breedsGrid) return;
+            
+            breedsGrid.innerHTML = dogBreeds.map(breed => {
+                const sizeClass = breed.size === 'small' ? 'size-small' : breed.size === 'medium' ? 'size-medium' : 'size-large';
+                const sizeLabel = breed.size === 'small' ? 'Piccola' : breed.size === 'medium' ? 'Media' : 'Grande';
+                
+                return `
+                    <div class="breed-card">
+                        <div class="breed-image" style="background-image: url('${breed.image}')">
+                            <span class="breed-size-badge ${sizeClass}">${sizeLabel}</span>
+                        </div>
+                        <div class="breed-info">
+                            <h4>${breed.name}</h4>
+                            <p>${breed.description}</p>
+                            <div class="breed-temperament">
+                                ${breed.temperament.map(t => {
+                                    let label = '';
+                                    if (t === 'family') label = '👨‍👩‍👧‍👦 Famiglia';
+                                    else if (t === 'guardia') label = '🛡️ Guardia';
+                                    else if (t === 'sportivo') label = '⚡ Sportivo';
+                                    else if (t === 'calmo') label = '😌 Calmo';
+                                    return `<span class="temperament-badge">${label}</span>`;
+                                }).join('')}
+                            </div>
+                            <div class="breed-details">
+                                <span>📏 ${breed.weight}</span>
+                                <span>⏳ ${breed.lifeSpan}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterBreeds() {
+            const size = document.getElementById('breedSize').value;
+            const temperament = document.getElementById('breedTemperament').value;
+            const search = document.getElementById('breedSearch').value.toLowerCase();
+            
+            const breedsGrid = document.getElementById('breedsGrid');
+            
+            const filtered = dogBreeds.filter(breed => {
+                if (size !== 'all' && breed.size !== size) return false;
+                if (temperament !== 'all' && !breed.temperament.includes(temperament)) return false;
+                if (search && !breed.name.toLowerCase().includes(search)) return false;
+                return true;
+            });
+            
+            if (filtered.length === 0) {
+                breedsGrid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666; padding: 50px;">Nessuna razza trovata con questi filtri</p>';
+                return;
+            }
+            
+            breedsGrid.innerHTML = filtered.map(breed => {
+                const sizeClass = breed.size === 'small' ? 'size-small' : breed.size === 'medium' ? 'size-medium' : 'size-large';
+                const sizeLabel = breed.size === 'small' ? 'Piccola' : breed.size === 'medium' ? 'Media' : 'Grande';
+                
+                return `
+                    <div class="breed-card">
+                        <div class="breed-image" style="background-image: url('${breed.image}')">
+                            <span class="breed-size-badge ${sizeClass}">${sizeLabel}</span>
+                        </div>
+                        <div class="breed-info">
+                            <h4>${breed.name}</h4>
+                            <p>${breed.description}</p>
+                            <div class="breed-temperament">
+                                ${breed.temperament.map(t => {
+                                    let label = '';
+                                    if (t === 'family') label = '👨‍👩‍👧‍👦 Famiglia';
+                                    else if (t === 'guardia') label = '🛡️ Guardia';
+                                    else if (t === 'sportivo') label = '⚡ Sportivo';
+                                    else if (t === 'calmo') label = '😌 Calmo';
+                                    return `<span class="temperament-badge">${label}</span>`;
+                                }).join('')}
+                            </div>
+                            <div class="breed-details">
+                                <span>📏 ${breed.weight}</span>
+                                <span>⏳ ${breed.lifeSpan}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==================== INIZIALIZZAZIONE ====================
+        window.onload = function() {
+            loadGallery();
+            loadForum();
+            loadBreeds();
+            searchVets();
+            
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            };
+        };
+    </script>
+</body>
+</html>
