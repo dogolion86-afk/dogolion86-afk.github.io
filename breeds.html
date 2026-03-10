@@ -169,10 +169,11 @@
         }
 
         .breed-image {
-            height: 180px;
+            height: 200px;
             background-size: cover;
             background-position: center;
             position: relative;
+            background-color: #f0f0f0;
         }
 
         .breed-size-badge {
@@ -390,6 +391,23 @@
         let currentPage = 1;
         const breedsPerPage = 12;
 
+        // Immagini di fallback nel caso l'API non dia immagini
+        const fallbackImages = [
+            'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400',
+            'https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=400',
+            'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400',
+            'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400',
+            'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400',
+            'https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400',
+            'https://images.unsplash.com/photo-1568572933382-74d440642117?w=400',
+            'https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400',
+            'https://images.unsplash.com/photo-1617895153857-82c79b6eba9b?w=400'
+        ];
+
+        function getRandomFallbackImage() {
+            return fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+        }
+
         async function loadBreeds() {
             try {
                 // Carichiamo TUTTE le razze in UNA SOLA chiamata
@@ -399,9 +417,9 @@
                 
                 const breeds = await response.json();
                 
-                // Prendiamo le prime 50 razze
+                // Prendiamo le prime 50 razze (cambia questo numero per averne di più)
                 allBreeds = breeds.slice(0, 50).map(breed => {
-                    // Determiniamo la taglia
+                    // Determiniamo la taglia in base al peso
                     let size = 'medium';
                     if (breed.weight && breed.weight.metric) {
                         const weightMatch = breed.weight.metric.match(/(\d+)/);
@@ -411,13 +429,21 @@
                             else if (weight > 25) size = 'large';
                         }
                     }
+
+                    // Costruiamo l'URL dell'immagine nel modo corretto
+                    let imageUrl = getRandomFallbackImage(); // default fallback
+                    
+                    if (breed.reference_image_id) {
+                        // URL corretto per le immagini TheDogAPI
+                        imageUrl = `https://cdn2.thedogapi.com/images/${breed.reference_image_id}_1280.jpg`;
+                    }
                     
                     return {
                         id: breed.id,
                         name: breed.name,
                         size: size,
                         temperament: breed.temperament ? breed.temperament.split(',').slice(0, 3).map(t => t.trim()) : ['Affettuoso'],
-                        image: `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`,
+                        image: imageUrl,
                         lifeSpan: breed.life_span ? breed.life_span.split(' ')[0] + ' anni' : 'N/D',
                         weight: breed.weight ? breed.weight.metric : 'N/D',
                     };
@@ -473,11 +499,11 @@
         function displayBreeds(breeds) {
             const breedsGrid = document.getElementById('breedsGrid');
             
-            breedsGrid.innerHTML = breeds.map(breed => {
+            breedsGrid.innerHTML = breeds.map((breed, index) => {
                 const sizeLabel = breed.size === 'small' ? 'Piccola' : breed.size === 'medium' ? 'Media' : 'Grande';
                 
                 return `
-                    <div class="breed-card" style="animation-delay: ${Math.random() * 0.2}s">
+                    <div class="breed-card" style="animation-delay: ${index * 0.05}s">
                         <div class="breed-image" style="background-image: url('${breed.image}')">
                             <span class="breed-size-badge">${sizeLabel}</span>
                         </div>
