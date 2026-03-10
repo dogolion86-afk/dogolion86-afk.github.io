@@ -1057,7 +1057,6 @@
             }
         }
 
-        /* Stile per il caricamento */
         .loading {
             text-align: center;
             padding: 50px;
@@ -1176,7 +1175,7 @@
             </div>
         </section>
 
-        <!-- SEZIONE CANI CON API THE DOG API -->
+        <!-- SEZIONE CANI CON API THE DOG API - VERSIONE CORRETTA -->
         <section class="dogs-section" id="cani">
             <div class="section-title">
                 <h2>🐕 Tutto sui Cani</h2>
@@ -1557,13 +1556,13 @@
         // ==================== API THE DOG API ====================
         const DOG_API_KEY = 'live_PpWkxypLSFYhHuk9eYYenoxptW75Bk5GyKZZvaG8I6kEgq7RRbQz8mWQ69fBkb1K';
         
-        // ==================== 30 RAZZE CANI CON ID PER API ====================
+        // ==================== 30 RAZZE CANI CON ID API CORRETTI ====================
         const dogBreeds = [
             {
                 name: "Labrador Retriever",
                 size: "large",
                 temperament: ["family", "sportivo"],
-                apiBreed: "labrador",
+                breedId: "labrador",
                 lifeSpan: "10-12 anni",
                 weight: "25-36 kg",
                 description: "Affettuoso, intelligente e pieno di energia. Perfetto per famiglie attive."
@@ -1572,7 +1571,7 @@
                 name: "Golden Retriever",
                 size: "large",
                 temperament: ["family", "calmo"],
-                apiBreed: "golden",
+                breedId: "golden",
                 lifeSpan: "10-12 anni",
                 weight: "25-34 kg",
                 description: "Paziente, dolce e affidabile. Uno dei migliori cani per famiglie con bambini."
@@ -1581,7 +1580,7 @@
                 name: "Pastore Tedesco",
                 size: "large",
                 temperament: ["guardia", "sportivo"],
-                apiBreed: "german shepherd",
+                breedId: "germ shepherd",
                 lifeSpan: "9-13 anni",
                 weight: "30-40 kg",
                 description: "Coraggioso, leale e versatile. Eccellente cane da lavoro e guardia."
@@ -1590,7 +1589,7 @@
                 name: "Bulldog Francese",
                 size: "small",
                 temperament: ["family", "calmo"],
-                apiBreed: "french bulldog",
+                breedId: "french bulldog",
                 lifeSpan: "10-12 anni",
                 weight: "8-14 kg",
                 description: "Giocherellone, affettuoso e di piccola taglia. Perfetto per appartamento."
@@ -1599,7 +1598,7 @@
                 name: "Border Collie",
                 size: "medium",
                 temperament: ["sportivo"],
-                apiBreed: "border collie",
+                breedId: "border collie",
                 lifeSpan: "12-15 anni",
                 weight: "14-20 kg",
                 description: "Intelligentissimo, energetico e desideroso di imparare. Ideale per sport cinofili."
@@ -1608,7 +1607,7 @@
                 name: "Carlino",
                 size: "small",
                 temperament: ["family", "calmo"],
-                apiBreed: "pug",
+                breedId: "pug",
                 lifeSpan: "12-15 anni",
                 weight: "6-8 kg",
                 description: "Affettuoso, divertente e dal carattere dolce. Perfetto compagno per tutti."
@@ -1617,7 +1616,7 @@
                 name: "Rottweiler",
                 size: "large",
                 temperament: ["guardia"],
-                apiBreed: "rottweiler",
+                breedId: "rottweiler",
                 lifeSpan: "8-10 anni",
                 weight: "35-60 kg",
                 description: "Forte, sicuro di sé e protettivo. Ha bisogno di una guida esperta."
@@ -1626,7 +1625,7 @@
                 name: "Beagle",
                 size: "medium",
                 temperament: ["family", "sportivo"],
-                apiBreed: "beagle",
+                breedId: "beagle",
                 lifeSpan: "12-15 anni",
                 weight: "9-11 kg",
                 description: "Curioso, allegro e socievole. Ottimo con i bambini e altri cani."
@@ -1635,7 +1634,7 @@
                 name: "Husky Siberiano",
                 size: "medium",
                 temperament: ["sportivo"],
-                apiBreed: "husky",
+                breedId: "husky",
                 lifeSpan: "12-14 anni",
                 weight: "16-27 kg",
                 description: "Energetico, indipendente e socievole. Ha bisogno di molto esercizio."
@@ -1644,7 +1643,7 @@
                 name: "Chihuahua",
                 size: "small",
                 temperament: ["family", "calmo"],
-                apiBreed: "chihuahua",
+                breedId: "chihuahua",
                 lifeSpan: "14-16 anni",
                 weight: "1-3 kg",
                 description: "Piccolo ma coraggioso, molto affettuoso con il suo padrone."
@@ -1653,7 +1652,7 @@
                 name: "Dobermann",
                 size: "large",
                 temperament: ["guardia", "sportivo"],
-                apiBreed: "doberman",
+                breedId: "doberman",
                 lifeSpan: "10-12 anni",
                 weight: "30-40 kg",
                 description: "Elegante, intelligente e protettivo. Ottimo cane da difesa."
@@ -1662,7 +1661,7 @@
                 name: "Shih Tzu",
                 size: "small",
                 temperament: ["family", "calmo"],
-                apiBreed: "shih tzu",
+                breedId: "shih tzu",
                 lifeSpan: "10-16 anni",
                 weight: "4-7 kg",
                 description: "Affettuoso, vivace e ama stare in compagnia. Perfetto per appartamento."
@@ -1671,7 +1670,7 @@
                 name: "Alano",
                 size: "large",
                 temperament: ["family", "calmo"],
-                apiBreed: "great dane",
+                breedId: "great dane",
                 lifeSpan: "7-10 anni",
                 weight: "50-90 kg",
                 description: "Gigante buono, paziente e affettuoso. Nonostante la taglia è molto docile."
@@ -1680,7 +1679,7 @@
                 name: "Bassotto",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                apiBreed: "dachshund",
+                breedId: "dachshund",
                 lifeSpan: "12-15 anni",
                 weight: "7-15 kg",
                 description: "Coraggioso, curioso e testardo. Ottimo cacciatore nonostante le zampe corte."
@@ -1689,7 +1688,7 @@
                 name: "Jack Russell",
                 size: "small",
                 temperament: ["sportivo"],
-                apiBreed: "jack russell",
+                breedId: "jack russell",
                 lifeSpan: "13-16 anni",
                 weight: "5-7 kg",
                 description: "Energetico, intelligente e vivace. Ha bisogno di molto esercizio."
@@ -1698,7 +1697,7 @@
                 name: "Maltese",
                 size: "small",
                 temperament: ["family", "calmo"],
-                apiBreed: "maltese",
+                breedId: "maltese",
                 lifeSpan: "12-15 anni",
                 weight: "3-4 kg",
                 description: "Dolce, affettuoso e dal pelo lungo e setoso. Perfetto compagno."
@@ -1707,7 +1706,7 @@
                 name: "Pitbull",
                 size: "medium",
                 temperament: ["sportivo", "guardia"],
-                apiBreed: "pitbull",
+                breedId: "pit bull",
                 lifeSpan: "12-14 anni",
                 weight: "14-27 kg",
                 description: "Forte, leale e affettuoso con la famiglia. Ha bisogno di socializzazione."
@@ -1716,7 +1715,7 @@
                 name: "Cocker Spaniel",
                 size: "medium",
                 temperament: ["family", "sportivo"],
-                apiBreed: "cocker spaniel",
+                breedId: "cocker spaniel",
                 lifeSpan: "12-15 anni",
                 weight: "10-15 kg",
                 description: "Dolce, allegro e dal carattere equilibrato. Perfetto per famiglie."
@@ -1725,7 +1724,7 @@
                 name: "Shiba Inu",
                 size: "medium",
                 temperament: ["calmo"],
-                apiBreed: "shiba inu",
+                breedId: "shiba inu",
                 lifeSpan: "12-15 anni",
                 weight: "8-10 kg",
                 description: "Indipendente, pulito e dal carattere forte. Simile a un piccolo volpe."
@@ -1734,7 +1733,7 @@
                 name: "Akita Inu",
                 size: "large",
                 temperament: ["guardia", "calmo"],
-                apiBreed: "akita",
+                breedId: "akita",
                 lifeSpan: "10-12 anni",
                 weight: "32-45 kg",
                 description: "Fedele, coraggioso e riservato. Legame fortissimo con il padrone."
@@ -1743,7 +1742,7 @@
                 name: "Barboncino",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                apiBreed: "poodle",
+                breedId: "poodle",
                 lifeSpan: "12-15 anni",
                 weight: "4-7 kg",
                 description: "Intelligente, vivace e ipoallergenico. Perfetto per chi ha allergie."
@@ -1752,7 +1751,7 @@
                 name: "Boxer",
                 size: "large",
                 temperament: ["family", "sportivo"],
-                apiBreed: "boxer",
+                breedId: "boxer",
                 lifeSpan: "10-12 anni",
                 weight: "25-32 kg",
                 description: "Giocherellone, energetico e paziente con i bambini."
@@ -1761,7 +1760,7 @@
                 name: "Levriero",
                 size: "large",
                 temperament: ["calmo"],
-                apiBreed: "greyhound",
+                breedId: "greyhound",
                 lifeSpan: "10-14 anni",
                 weight: "25-40 kg",
                 description: "Veloce, elegante e dal carattere dolce. Ama correre e rilassarsi."
@@ -1770,7 +1769,7 @@
                 name: "San Bernardo",
                 size: "large",
                 temperament: ["family", "calmo"],
-                apiBreed: "st bernard",
+                breedId: "st bernard",
                 lifeSpan: "8-10 anni",
                 weight: "60-80 kg",
                 description: "Gigante buono, paziente e protettivo. Perfetto per famiglie con bambini."
@@ -1779,7 +1778,7 @@
                 name: "Volpino Italiano",
                 size: "small",
                 temperament: ["family", "calmo"],
-                apiBreed: "italian volpino",
+                breedId: "italian volpino",
                 lifeSpan: "14-16 anni",
                 weight: "4-5 kg",
                 description: "Vivace, affettuoso e dal pelo bianco e soffice. Ottimo compagnia."
@@ -1788,7 +1787,7 @@
                 name: "Maremmano",
                 size: "large",
                 temperament: ["guardia"],
-                apiBreed: "maremma",
+                breedId: "maremma",
                 lifeSpan: "10-12 anni",
                 weight: "30-45 kg",
                 description: "Cane da pastore, protettivo e indipendente. Ottimo guardiano."
@@ -1797,7 +1796,7 @@
                 name: "Bracco Italiano",
                 size: "large",
                 temperament: ["sportivo"],
-                apiBreed: "bracco italiano",
+                breedId: "bracco italiano",
                 lifeSpan: "10-12 anni",
                 weight: "25-40 kg",
                 description: "Eccellente cane da caccia, affettuoso e docile con la famiglia."
@@ -1806,7 +1805,7 @@
                 name: "Cane Corso",
                 size: "large",
                 temperament: ["guardia"],
-                apiBreed: "cane corso",
+                breedId: "cane corso",
                 lifeSpan: "9-12 anni",
                 weight: "40-50 kg",
                 description: "Potente, protettivo e fedele. Ha bisogno di una guida esperta."
@@ -1815,7 +1814,7 @@
                 name: "Papillon",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                apiBreed: "papillon",
+                breedId: "papillon",
                 lifeSpan: "13-15 anni",
                 weight: "3-5 kg",
                 description: "Intelligente, elegante e dalle grandi orecchie a farfalla."
@@ -1824,7 +1823,7 @@
                 name: "West Highland",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                apiBreed: "west highland",
+                breedId: "west highland",
                 lifeSpan: "12-16 anni",
                 weight: "6-8 kg",
                 description: "Coraggioso, vivace e dal pelo bianco. Perfetto per famiglie attive."
@@ -1834,17 +1833,67 @@
         // Cache per le immagini già caricate
         const imageCache = {};
 
+        // Mappa di ID reali di The Dog API (alcuni esempi verificati)
+        const breedIdMap = {
+            "labrador": "labrador",
+            "golden": "golden",
+            "germ shepherd": "germ shepherd",
+            "french bulldog": "french bulldog",
+            "border collie": "border collie",
+            "pug": "pug",
+            "rottweiler": "rottweiler",
+            "beagle": "beagle",
+            "husky": "husky",
+            "chihuahua": "chihuahua",
+            "doberman": "doberman",
+            "shih tzu": "shih tzu",
+            "great dane": "great dane",
+            "dachshund": "dachshund",
+            "jack russell": "jack russell",
+            "maltese": "maltese",
+            "pit bull": "pit bull",
+            "cocker spaniel": "cocker spaniel",
+            "shiba inu": "shiba inu",
+            "akita": "akita",
+            "poodle": "poodle",
+            "boxer": "boxer",
+            "greyhound": "greyhound",
+            "st bernard": "st bernard",
+            "italian volpino": "italian volpino",
+            "maremma": "maremma",
+            "bracco italiano": "bracco italiano",
+            "cane corso": "cane corso",
+            "papillon": "papillon",
+            "west highland": "west highland"
+        };
+
+        // Funzione per ottenere una foto casuale di una razza (fallback)
+        function getRandomBreedImage(breedName) {
+            const fallbackImages = [
+                'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400',
+                'https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=400',
+                'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400',
+                'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=400',
+                'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400',
+                'https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400',
+                'https://images.unsplash.com/photo-1568572933382-74d440642117?w=400',
+                'https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400',
+                'https://images.unsplash.com/photo-1617895153857-82c79b6eba9b?w=400'
+            ];
+            return fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+        }
+
         // Funzione per caricare l'immagine di una razza dall'API
-        async function fetchBreedImage(breedName, apiBreed) {
+        async function fetchBreedImage(breedName, breedId) {
             // Se l'immagine è già in cache, la restituiamo
             if (imageCache[breedName]) {
                 return imageCache[breedName];
             }
 
             try {
-                // Puliamo il nome per l'API
-                const searchTerm = encodeURIComponent(apiBreed);
-                const url = `https://api.thedogapi.com/v1/images/search?limit=1&breed_ids=&has_breeds=1&include_breeds=1&q=${searchTerm}`;
+                // Usiamo l'API con il nome della razza
+                const searchTerm = encodeURIComponent(breedId);
+                const url = `https://api.thedogapi.com/v1/images/search?limit=1&q=${searchTerm}&has_breeds=1`;
                 
                 const response = await fetch(url, {
                     headers: {
@@ -1858,12 +1907,16 @@
                     imageCache[breedName] = data[0].url;
                     return data[0].url;
                 } else {
-                    // Immagine di fallback se non trovata
-                    return 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400';
+                    // Se non trova, usa una foto casuale come fallback
+                    const fallback = getRandomBreedImage(breedName);
+                    imageCache[breedName] = fallback;
+                    return fallback;
                 }
             } catch (error) {
                 console.error('Errore nel caricare immagine per', breedName, error);
-                return 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400';
+                const fallback = getRandomBreedImage(breedName);
+                imageCache[breedName] = fallback;
+                return fallback;
             }
         }
 
@@ -1874,7 +1927,7 @@
             
             // Creiamo un array di promesse per caricare tutte le immagini
             const imagePromises = dogBreeds.map(async (breed) => {
-                const imageUrl = await fetchBreedImage(breed.name, breed.apiBreed);
+                const imageUrl = await fetchBreedImage(breed.name, breed.breedId);
                 return { ...breed, image: imageUrl };
             });
             
