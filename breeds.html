@@ -707,57 +707,68 @@
         }
 
         async function loadBreeds() {
-            try {
-                const response = await fetch('https://api.thedogapi.com/v1/breeds', {
-                    headers: { 'x-api-key': DOG_API_KEY }
-                });
-                
-                const breeds = await response.json();
-                
-                // Prendiamo TUTTE le razze (172)
-                allBreeds = breeds.map(breed => {
-                    const italianName = italianNames[breed.name] || breed.name;
-                    
-                    let size = 'medium';
-                    if (breed.weight && breed.weight.metric) {
-                        const weightMatch = breed.weight.metric.match(/(\d+)/);
-                        if (weightMatch) {
-                            const weight = parseInt(weightMatch[0]);
-                            if (weight < 10) size = 'small';
-                            else if (weight > 25) size = 'large';
-                        }
-                    }
-
-                    // Costruisci URL immagine se disponibile
-                    let imageUrl = getRandomFallbackImage();
-                    if (breed.reference_image_id) {
-                        // Prova diversi formati per essere sicuri che l'immagine funzioni
-                        imageUrl = `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`;
-                    }
-                    
-                    return {
-                        id: breed.id,
-                        name: italianName,
-                        size: size,
-                        temperament: breed.temperament ? breed.temperament.split(',').slice(0, 3).map(t => t.trim()) : ['Affettuoso'],
-                        image: imageUrl,
-                        lifeSpan: breed.life_span ? breed.life_span.split(' ')[0] + ' anni' : 'N/D',
-                        weight: breed.weight ? breed.weight.metric : 'N/D',
-                    };
-                });
-                
-                // Aggiorna i contatori
-                document.getElementById('breedCount').textContent = allBreeds.length;
-                document.getElementById('footerBreedCount').textContent = allBreeds.length;
-                
-                updateStats();
-                showPage(1);
-                
-            } catch (error) {
-                console.error('Errore:', error);
-                document.getElementById('breedsGrid').innerHTML = '<div class="loading">❌ Errore nel caricamento</div>';
+    const breedsGrid = document.getElementById('breedsGrid');
+    try {
+        const response = await fetch('https://api.thedogapi.com/v1/breeds', {
+            headers: { 'x-api-key': DOG_API_KEY }
+        });
+        
+        const breeds = await response.json();
+        
+        allBreeds = breeds.map(breed => {
+            const italianName = italianNames[breed.name] || breed.name;
+            
+            // LOGICA CORRETTA PER L'IMMAGINE
+            // Priorità 1: L'URL fornito direttamente dall'API
+            // Priorità 2: Ricostruzione tramite ID (fallback)
+            // Priorità 3: Immagine casuale se tutto il resto fallisce
+            let imageUrl = breed.image?.url;
+            
+            if (!imageUrl && breed.reference_image_id) {
+                imageUrl = `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`;
             }
-        }
+            
+            if (!imageUrl) {
+                imageUrl = getRandomFallbackImage();
+            }
+
+            let size = 'medium';
+            if (breed.weight && breed.weight.metric) {
+                const weightMatch = breed.weight.metric.match(/(\d+)/);
+                if (weightMatch) {
+                    const weight = parseInt(weightMatch[0]);
+                    if (weight < 12) size = 'small';
+                    else if (weight > 25) size = 'large';
+                }
+            }
+            
+            return {
+                id: breed.id,
+                name: italianName,
+                size: size,
+                temperament: breed.temperament ? breed.temperament.split(',').slice(0, 3).map(t => t.trim()) : ['Affettuoso'],
+                image: imageUrl,
+                lifeSpan: breed.life_span ? breed.life_span.replace(' years', ' anni') : 'N/D',
+                weight: breed.weight ? breed.weight.metric : 'N/D',
+            };
+        });
+        
+        // Aggiorna i testi e i contatori
+        const countElements = ['breedCount', 'footerBreedCount', 'totalBreeds'];
+        countElements.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = allBreeds.length;
+        });
+        
+        updateStats();
+        showPage(1); // Mostra la prima pagina di risultati
+        
+    } catch (error) {
+        console.error('Errore durante il caricamento:', error);
+        breedsGrid.innerHTML = '<div class="loading">❌ Errore nel caricamento del database. Riprova più tardi.</div>';
+    }
+}
+
 
         function updateStats() {
             const totalBreeds = allBreeds.length;
