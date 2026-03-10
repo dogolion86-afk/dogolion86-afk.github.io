@@ -1056,6 +1056,14 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* Stile per il caricamento */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -1168,7 +1176,7 @@
             </div>
         </section>
 
-        <!-- SEZIONE CANI CON 30 RAZZE E FOTO CORRETTE -->
+        <!-- SEZIONE CANI CON API THE DOG API -->
         <section class="dogs-section" id="cani">
             <div class="section-title">
                 <h2>🐕 Tutto sui Cani</h2>
@@ -1229,7 +1237,7 @@
                 </div>
                 
                 <div class="breeds-grid" id="breedsGrid">
-                    <!-- Le 30 razze verranno caricate qui da JavaScript -->
+                    <div class="loading">🔄 Caricamento foto dei cani...</div>
                 </div>
             </div>
 
@@ -1546,13 +1554,16 @@
             { url: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400", caption: "Gatto che dorme" }
         ];
 
-        // ==================== 30 RAZZE CANI CON FOTO VERIFICATE ====================
+        // ==================== API THE DOG API ====================
+        const DOG_API_KEY = 'live_PpWkxypLSFYhHuk9eYYenoxptW75Bk5GyKZZvaG8I6kEgq7RRbQz8mWQ69fBkb1K';
+        
+        // ==================== 30 RAZZE CANI CON ID PER API ====================
         const dogBreeds = [
             {
                 name: "Labrador Retriever",
                 size: "large",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                apiBreed: "labrador",
                 lifeSpan: "10-12 anni",
                 weight: "25-36 kg",
                 description: "Affettuoso, intelligente e pieno di energia. Perfetto per famiglie attive."
@@ -1561,7 +1572,7 @@
                 name: "Golden Retriever",
                 size: "large",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1633722715463-30d4b5f3b022?w=400",
+                apiBreed: "golden",
                 lifeSpan: "10-12 anni",
                 weight: "25-34 kg",
                 description: "Paziente, dolce e affidabile. Uno dei migliori cani per famiglie con bambini."
@@ -1570,7 +1581,7 @@
                 name: "Pastore Tedesco",
                 size: "large",
                 temperament: ["guardia", "sportivo"],
-                image: "https://images.unsplash.com/photo-1568572933382-74d440642117?w=400",
+                apiBreed: "german shepherd",
                 lifeSpan: "9-13 anni",
                 weight: "30-40 kg",
                 description: "Coraggioso, leale e versatile. Eccellente cane da lavoro e guardia."
@@ -1579,7 +1590,7 @@
                 name: "Bulldog Francese",
                 size: "small",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?w=400",
+                apiBreed: "french bulldog",
                 lifeSpan: "10-12 anni",
                 weight: "8-14 kg",
                 description: "Giocherellone, affettuoso e di piccola taglia. Perfetto per appartamento."
@@ -1588,7 +1599,7 @@
                 name: "Border Collie",
                 size: "medium",
                 temperament: ["sportivo"],
-                image: "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=400",
+                apiBreed: "border collie",
                 lifeSpan: "12-15 anni",
                 weight: "14-20 kg",
                 description: "Intelligentissimo, energetico e desideroso di imparare. Ideale per sport cinofili."
@@ -1597,7 +1608,7 @@
                 name: "Carlino",
                 size: "small",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400",
+                apiBreed: "pug",
                 lifeSpan: "12-15 anni",
                 weight: "6-8 kg",
                 description: "Affettuoso, divertente e dal carattere dolce. Perfetto compagno per tutti."
@@ -1606,7 +1617,7 @@
                 name: "Rottweiler",
                 size: "large",
                 temperament: ["guardia"],
-                image: "https://images.unsplash.com/photo-1567752881298-894bb81f9379?w=400",
+                apiBreed: "rottweiler",
                 lifeSpan: "8-10 anni",
                 weight: "35-60 kg",
                 description: "Forte, sicuro di sé e protettivo. Ha bisogno di una guida esperta."
@@ -1615,7 +1626,7 @@
                 name: "Beagle",
                 size: "medium",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1505628346881-72b856e97430?w=400",
+                apiBreed: "beagle",
                 lifeSpan: "12-15 anni",
                 weight: "9-11 kg",
                 description: "Curioso, allegro e socievole. Ottimo con i bambini e altri cani."
@@ -1624,7 +1635,7 @@
                 name: "Husky Siberiano",
                 size: "medium",
                 temperament: ["sportivo"],
-                image: "https://images.unsplash.com/photo-1617895153857-82c79b6eba9b?w=400",
+                apiBreed: "husky",
                 lifeSpan: "12-14 anni",
                 weight: "16-27 kg",
                 description: "Energetico, indipendente e socievole. Ha bisogno di molto esercizio."
@@ -1633,7 +1644,7 @@
                 name: "Chihuahua",
                 size: "small",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                apiBreed: "chihuahua",
                 lifeSpan: "14-16 anni",
                 weight: "1-3 kg",
                 description: "Piccolo ma coraggioso, molto affettuoso con il suo padrone."
@@ -1642,7 +1653,7 @@
                 name: "Dobermann",
                 size: "large",
                 temperament: ["guardia", "sportivo"],
-                image: "https://images.unsplash.com/photo-1575852661809-2f68d76f6a24?w=400",
+                apiBreed: "doberman",
                 lifeSpan: "10-12 anni",
                 weight: "30-40 kg",
                 description: "Elegante, intelligente e protettivo. Ottimo cane da difesa."
@@ -1651,7 +1662,7 @@
                 name: "Shih Tzu",
                 size: "small",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1583336523026-5b0a841c0e4e?w=400",
+                apiBreed: "shih tzu",
                 lifeSpan: "10-16 anni",
                 weight: "4-7 kg",
                 description: "Affettuoso, vivace e ama stare in compagnia. Perfetto per appartamento."
@@ -1660,7 +1671,7 @@
                 name: "Alano",
                 size: "large",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400",
+                apiBreed: "great dane",
                 lifeSpan: "7-10 anni",
                 weight: "50-90 kg",
                 description: "Gigante buono, paziente e affettuoso. Nonostante la taglia è molto docile."
@@ -1669,7 +1680,7 @@
                 name: "Bassotto",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1611715721797-39290c5d8a33?w=400",
+                apiBreed: "dachshund",
                 lifeSpan: "12-15 anni",
                 weight: "7-15 kg",
                 description: "Coraggioso, curioso e testardo. Ottimo cacciatore nonostante le zampe corte."
@@ -1678,7 +1689,7 @@
                 name: "Jack Russell",
                 size: "small",
                 temperament: ["sportivo"],
-                image: "https://images.unsplash.com/photo-1598887105028-9c1f3bae2814?w=400",
+                apiBreed: "jack russell",
                 lifeSpan: "13-16 anni",
                 weight: "5-7 kg",
                 description: "Energetico, intelligente e vivace. Ha bisogno di molto esercizio."
@@ -1687,7 +1698,7 @@
                 name: "Maltese",
                 size: "small",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1591949558172-25a045d8b9db?w=400",
+                apiBreed: "maltese",
                 lifeSpan: "12-15 anni",
                 weight: "3-4 kg",
                 description: "Dolce, affettuoso e dal pelo lungo e setoso. Perfetto compagno."
@@ -1696,7 +1707,7 @@
                 name: "Pitbull",
                 size: "medium",
                 temperament: ["sportivo", "guardia"],
-                image: "https://images.unsplash.com/photo-1582456892045-54cafe4cae94?w=400",
+                apiBreed: "pitbull",
                 lifeSpan: "12-14 anni",
                 weight: "14-27 kg",
                 description: "Forte, leale e affettuoso con la famiglia. Ha bisogno di socializzazione."
@@ -1705,7 +1716,7 @@
                 name: "Cocker Spaniel",
                 size: "medium",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400",
+                apiBreed: "cocker spaniel",
                 lifeSpan: "12-15 anni",
                 weight: "10-15 kg",
                 description: "Dolce, allegro e dal carattere equilibrato. Perfetto per famiglie."
@@ -1714,7 +1725,7 @@
                 name: "Shiba Inu",
                 size: "medium",
                 temperament: ["calmo"],
-                image: "https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?w=400",
+                apiBreed: "shiba inu",
                 lifeSpan: "12-15 anni",
                 weight: "8-10 kg",
                 description: "Indipendente, pulito e dal carattere forte. Simile a un piccolo volpe."
@@ -1723,7 +1734,7 @@
                 name: "Akita Inu",
                 size: "large",
                 temperament: ["guardia", "calmo"],
-                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                apiBreed: "akita",
                 lifeSpan: "10-12 anni",
                 weight: "32-45 kg",
                 description: "Fedele, coraggioso e riservato. Legame fortissimo con il padrone."
@@ -1732,7 +1743,7 @@
                 name: "Barboncino",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1583336523026-5b0a841c0e4e?w=400",
+                apiBreed: "poodle",
                 lifeSpan: "12-15 anni",
                 weight: "4-7 kg",
                 description: "Intelligente, vivace e ipoallergenico. Perfetto per chi ha allergie."
@@ -1741,7 +1752,7 @@
                 name: "Boxer",
                 size: "large",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400",
+                apiBreed: "boxer",
                 lifeSpan: "10-12 anni",
                 weight: "25-32 kg",
                 description: "Giocherellone, energetico e paziente con i bambini."
@@ -1750,7 +1761,7 @@
                 name: "Levriero",
                 size: "large",
                 temperament: ["calmo"],
-                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                apiBreed: "greyhound",
                 lifeSpan: "10-14 anni",
                 weight: "25-40 kg",
                 description: "Veloce, elegante e dal carattere dolce. Ama correre e rilassarsi."
@@ -1759,7 +1770,7 @@
                 name: "San Bernardo",
                 size: "large",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1568572933382-74d440642117?w=400",
+                apiBreed: "st bernard",
                 lifeSpan: "8-10 anni",
                 weight: "60-80 kg",
                 description: "Gigante buono, paziente e protettivo. Perfetto per famiglie con bambini."
@@ -1768,7 +1779,7 @@
                 name: "Volpino Italiano",
                 size: "small",
                 temperament: ["family", "calmo"],
-                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                apiBreed: "italian volpino",
                 lifeSpan: "14-16 anni",
                 weight: "4-5 kg",
                 description: "Vivace, affettuoso e dal pelo bianco e soffice. Ottimo compagnia."
@@ -1777,7 +1788,7 @@
                 name: "Maremmano",
                 size: "large",
                 temperament: ["guardia"],
-                image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+                apiBreed: "maremma",
                 lifeSpan: "10-12 anni",
                 weight: "30-45 kg",
                 description: "Cane da pastore, protettivo e indipendente. Ottimo guardiano."
@@ -1786,7 +1797,7 @@
                 name: "Bracco Italiano",
                 size: "large",
                 temperament: ["sportivo"],
-                image: "https://images.unsplash.com/photo-1599263797083-7e2490ce51e2?w=400",
+                apiBreed: "bracco italiano",
                 lifeSpan: "10-12 anni",
                 weight: "25-40 kg",
                 description: "Eccellente cane da caccia, affettuoso e docile con la famiglia."
@@ -1795,7 +1806,7 @@
                 name: "Cane Corso",
                 size: "large",
                 temperament: ["guardia"],
-                image: "https://images.unsplash.com/photo-1568572933382-74d440642117?w=400",
+                apiBreed: "cane corso",
                 lifeSpan: "9-12 anni",
                 weight: "40-50 kg",
                 description: "Potente, protettivo e fedele. Ha bisogno di una guida esperta."
@@ -1804,7 +1815,7 @@
                 name: "Papillon",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400",
+                apiBreed: "papillon",
                 lifeSpan: "13-15 anni",
                 weight: "3-5 kg",
                 description: "Intelligente, elegante e dalle grandi orecchie a farfalla."
@@ -1813,12 +1824,126 @@
                 name: "West Highland",
                 size: "small",
                 temperament: ["family", "sportivo"],
-                image: "https://images.unsplash.com/photo-1611715721797-39290c5d8a33?w=400",
+                apiBreed: "west highland",
                 lifeSpan: "12-16 anni",
                 weight: "6-8 kg",
                 description: "Coraggioso, vivace e dal pelo bianco. Perfetto per famiglie attive."
             }
         ];
+
+        // Cache per le immagini già caricate
+        const imageCache = {};
+
+        // Funzione per caricare l'immagine di una razza dall'API
+        async function fetchBreedImage(breedName, apiBreed) {
+            // Se l'immagine è già in cache, la restituiamo
+            if (imageCache[breedName]) {
+                return imageCache[breedName];
+            }
+
+            try {
+                // Puliamo il nome per l'API
+                const searchTerm = encodeURIComponent(apiBreed);
+                const url = `https://api.thedogapi.com/v1/images/search?limit=1&breed_ids=&has_breeds=1&include_breeds=1&q=${searchTerm}`;
+                
+                const response = await fetch(url, {
+                    headers: {
+                        'x-api-key': DOG_API_KEY
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data && data.length > 0 && data[0].url) {
+                    imageCache[breedName] = data[0].url;
+                    return data[0].url;
+                } else {
+                    // Immagine di fallback se non trovata
+                    return 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400';
+                }
+            } catch (error) {
+                console.error('Errore nel caricare immagine per', breedName, error);
+                return 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400';
+            }
+        }
+
+        // Funzione per caricare tutte le immagini
+        async function loadAllBreedImages() {
+            const breedsGrid = document.getElementById('breedsGrid');
+            breedsGrid.innerHTML = '<div class="loading">🔄 Caricamento foto dei cani...</div>';
+            
+            // Creiamo un array di promesse per caricare tutte le immagini
+            const imagePromises = dogBreeds.map(async (breed) => {
+                const imageUrl = await fetchBreedImage(breed.name, breed.apiBreed);
+                return { ...breed, image: imageUrl };
+            });
+            
+            // Attendiamo che tutte le immagini siano caricate
+            const breedsWithImages = await Promise.all(imagePromises);
+            
+            // Salviamo le immagini nel database locale
+            window.breedsWithImages = breedsWithImages;
+            
+            // Visualizziamo le razze
+            displayBreeds(breedsWithImages);
+        }
+
+        function displayBreeds(breeds) {
+            const breedsGrid = document.getElementById('breedsGrid');
+            
+            breedsGrid.innerHTML = breeds.map(breed => {
+                const sizeClass = breed.size === 'small' ? 'size-small' : breed.size === 'medium' ? 'size-medium' : 'size-large';
+                const sizeLabel = breed.size === 'small' ? 'Piccola' : breed.size === 'medium' ? 'Media' : 'Grande';
+                
+                return `
+                    <div class="breed-card">
+                        <div class="breed-image" style="background-image: url('${breed.image}')">
+                            <span class="breed-size-badge ${sizeClass}">${sizeLabel}</span>
+                        </div>
+                        <div class="breed-info">
+                            <h4>${breed.name}</h4>
+                            <p>${breed.description}</p>
+                            <div class="breed-temperament">
+                                ${breed.temperament.map(t => {
+                                    let label = '';
+                                    if (t === 'family') label = '👨‍👩‍👧‍👦 Famiglia';
+                                    else if (t === 'guardia') label = '🛡️ Guardia';
+                                    else if (t === 'sportivo') label = '⚡ Sportivo';
+                                    else if (t === 'calmo') label = '😌 Calmo';
+                                    return `<span class="temperament-badge">${label}</span>`;
+                                }).join('')}
+                            </div>
+                            <div class="breed-details">
+                                <span>📏 ${breed.weight}</span>
+                                <span>⏳ ${breed.lifeSpan}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterBreeds() {
+            const size = document.getElementById('breedSize').value;
+            const temperament = document.getElementById('breedTemperament').value;
+            const search = document.getElementById('breedSearch').value.toLowerCase();
+            
+            const breedsToFilter = window.breedsWithImages || dogBreeds.map(b => ({ ...b, image: '' }));
+            
+            const filtered = breedsToFilter.filter(breed => {
+                if (size !== 'all' && breed.size !== size) return false;
+                if (temperament !== 'all' && !breed.temperament.includes(temperament)) return false;
+                if (search && !breed.name.toLowerCase().includes(search)) return false;
+                return true;
+            });
+            
+            if (filtered.length === 0) {
+                document.getElementById('breedsGrid').innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666; padding: 50px;">Nessuna razza trovata con questi filtri</p>';
+                return;
+            }
+            
+            displayBreeds(filtered);
+        }
 
         // ==================== FUNZIONI MODALE ARTICOLO ====================
         function openArticleModal() {
@@ -2063,103 +2188,21 @@
             element.classList.add('active');
             
             if (tabName === 'razze') {
-                loadBreeds();
+                // Se le immagini non sono ancora state caricate, le carichiamo
+                if (!window.breedsWithImages) {
+                    loadAllBreedImages();
+                }
             }
-        }
-
-        function loadBreeds() {
-            const breedsGrid = document.getElementById('breedsGrid');
-            if (!breedsGrid) return;
-            
-            breedsGrid.innerHTML = dogBreeds.map(breed => {
-                const sizeClass = breed.size === 'small' ? 'size-small' : breed.size === 'medium' ? 'size-medium' : 'size-large';
-                const sizeLabel = breed.size === 'small' ? 'Piccola' : breed.size === 'medium' ? 'Media' : 'Grande';
-                
-                return `
-                    <div class="breed-card">
-                        <div class="breed-image" style="background-image: url('${breed.image}')">
-                            <span class="breed-size-badge ${sizeClass}">${sizeLabel}</span>
-                        </div>
-                        <div class="breed-info">
-                            <h4>${breed.name}</h4>
-                            <p>${breed.description}</p>
-                            <div class="breed-temperament">
-                                ${breed.temperament.map(t => {
-                                    let label = '';
-                                    if (t === 'family') label = '👨‍👩‍👧‍👦 Famiglia';
-                                    else if (t === 'guardia') label = '🛡️ Guardia';
-                                    else if (t === 'sportivo') label = '⚡ Sportivo';
-                                    else if (t === 'calmo') label = '😌 Calmo';
-                                    return `<span class="temperament-badge">${label}</span>`;
-                                }).join('')}
-                            </div>
-                            <div class="breed-details">
-                                <span>📏 ${breed.weight}</span>
-                                <span>⏳ ${breed.lifeSpan}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function filterBreeds() {
-            const size = document.getElementById('breedSize').value;
-            const temperament = document.getElementById('breedTemperament').value;
-            const search = document.getElementById('breedSearch').value.toLowerCase();
-            
-            const breedsGrid = document.getElementById('breedsGrid');
-            
-            const filtered = dogBreeds.filter(breed => {
-                if (size !== 'all' && breed.size !== size) return false;
-                if (temperament !== 'all' && !breed.temperament.includes(temperament)) return false;
-                if (search && !breed.name.toLowerCase().includes(search)) return false;
-                return true;
-            });
-            
-            if (filtered.length === 0) {
-                breedsGrid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666; padding: 50px;">Nessuna razza trovata con questi filtri</p>';
-                return;
-            }
-            
-            breedsGrid.innerHTML = filtered.map(breed => {
-                const sizeClass = breed.size === 'small' ? 'size-small' : breed.size === 'medium' ? 'size-medium' : 'size-large';
-                const sizeLabel = breed.size === 'small' ? 'Piccola' : breed.size === 'medium' ? 'Media' : 'Grande';
-                
-                return `
-                    <div class="breed-card">
-                        <div class="breed-image" style="background-image: url('${breed.image}')">
-                            <span class="breed-size-badge ${sizeClass}">${sizeLabel}</span>
-                        </div>
-                        <div class="breed-info">
-                            <h4>${breed.name}</h4>
-                            <p>${breed.description}</p>
-                            <div class="breed-temperament">
-                                ${breed.temperament.map(t => {
-                                    let label = '';
-                                    if (t === 'family') label = '👨‍👩‍👧‍👦 Famiglia';
-                                    else if (t === 'guardia') label = '🛡️ Guardia';
-                                    else if (t === 'sportivo') label = '⚡ Sportivo';
-                                    else if (t === 'calmo') label = '😌 Calmo';
-                                    return `<span class="temperament-badge">${label}</span>`;
-                                }).join('')}
-                            </div>
-                            <div class="breed-details">
-                                <span>📏 ${breed.weight}</span>
-                                <span>⏳ ${breed.lifeSpan}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
         }
 
         // ==================== INIZIALIZZAZIONE ====================
         window.onload = function() {
             loadGallery();
             loadForum();
-            loadBreeds();
             searchVets();
+            
+            // Carichiamo le immagini delle razze all'avvio
+            loadAllBreedImages();
             
             window.onclick = function(event) {
                 if (event.target.classList.contains('modal')) {
